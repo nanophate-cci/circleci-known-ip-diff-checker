@@ -5,6 +5,9 @@ jobs:
       - image: cimg/base:stable
     steps:
       - checkout
+      - run: |
+          sudo apt-get update -y
+          sudo apt-get install -y dig
       - run: dig all.knownips.circleci.com A +short >| all-knownips-circleci-com.txt
       - run: |
           if [[ `git status --porcelain` ]]; then
