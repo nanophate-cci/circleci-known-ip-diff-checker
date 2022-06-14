@@ -7,7 +7,7 @@ jobs:
       - checkout
       - run: |
           sudo apt-get update -y
-          sudo apt-get install -y dig
+          sudo apt-get install -y dnsutils
       - run: dig all.knownips.circleci.com A +short >| all-knownips-circleci-com.txt
       - run: |
           if [[ `git status --porcelain` ]]; then
