@@ -1,0 +1,14 @@
+version: 2.1
+jobs:
+  build:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - run: dig all.knownips.circleci.com A +short >| all-knownips-circleci-com.txt
+      - run: |
+        if [[ `git status --porcelain` ]]; then
+          exit 1
+        else
+          exit 0
+        fi
