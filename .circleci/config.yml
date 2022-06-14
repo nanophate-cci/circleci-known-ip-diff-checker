@@ -8,6 +8,9 @@ jobs:
       - run: dig all.knownips.circleci.com A +short >| all-knownips-circleci-com.txt
       - run: |
         if [[ `git status --porcelain` ]]; then
+          git add .
+          git commit -m "Update IP Range List"
+          git push origin main
           exit 1
         else
           exit 0
